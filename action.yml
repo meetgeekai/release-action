@@ -5,14 +5,14 @@ inputs:
   jenkins_url:
     description: 'The URL of the Jenkins server'
     required: true
-  job_name:
-    description: 'The name of the Jenkins job'
-    required: true
   jenkins_user:
     description: 'The Jenkins user'
     required: true
   jenkins_token:
     description: 'The Jenkins API token'
+    required: true
+  job_name:
+    description: 'The name of the Jenkins job'
     required: true
   build_parameters:
     description: 'The parameters for the Jenkins build'
@@ -20,11 +20,11 @@ inputs:
     default: ''
   poll_interval_seconds:
     description: 'The poll interval in seconds between each status check'
-    required: true
+    required: false
     default: 45
   build_timeout_minutes:
     description: 'The maximum number of minutes a build is allowed to run'
-    required: true
+    required: false
     default: 60
 runs:
   using: docker
