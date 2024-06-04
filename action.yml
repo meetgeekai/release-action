@@ -1,0 +1,39 @@
+name: 'Trigger Jenkins Release Build'
+description: 'Triggers a Jenkins build with parameters and polls for its status'
+author: 'Andrei Trifu'
+inputs:
+  jenkins_url:
+    description: 'The URL of the Jenkins server'
+    required: true
+  job_name:
+    description: 'The name of the Jenkins job'
+    required: true
+  jenkins_user:
+    description: 'The Jenkins user'
+    required: true
+  jenkins_token:
+    description: 'The Jenkins API token'
+    required: true
+  build_parameters:
+    description: 'The parameters for the Jenkins build'
+    required: false
+    default: ''
+  poll_interval_seconds:
+    description: 'The poll interval in seconds between each status check'
+    required: true
+    default: 45
+  build_timeout_minutes:
+    description: 'The maximum number of minutes a build is allowed to run'
+    required: true
+    default: 60
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    JENKINS_URL: ${{ inputs.jenkins_url }}
+    JENKINS_USER: ${{ inputs.jenkins_user }}
+    JENKINS_TOKEN: ${{ inputs.jenkins_token }}
+    JENKINS_JOB_NAME: ${{ inputs.job_name }}
+    BUILD_PARAMETERS: ${{ inputs.build_parameters }}
+    POLL_INTERVAL_SECONDS: ${{ inputs.poll_interval_seconds }}
+    BUILD_TIMEOUT_MINUTES: ${{ inputs.job_name }}
