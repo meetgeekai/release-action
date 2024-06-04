@@ -72,8 +72,8 @@ class JenkinsServer:
             password=self.token,
         )
         self.job_name = job_name
-        self.poll_interval_seconds = poll_interval_seconds
-        self.build_timeout_minutes = build_timeout_minutes * 60
+        self.poll_interval_seconds = int(poll_interval_seconds)
+        self.build_timeout_minutes = int(build_timeout_minutes) * 60
 
         self._test_connection()
 
