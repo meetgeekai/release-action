@@ -36,4 +36,4 @@ runs:
     JENKINS_JOB_NAME: ${{ inputs.job_name }}
     BUILD_PARAMETERS: ${{ inputs.build_parameters }}
     POLL_INTERVAL_SECONDS: ${{ inputs.poll_interval_seconds }}
-    BUILD_TIMEOUT_MINUTES: ${{ inputs.job_name }}
+    BUILD_TIMEOUT_MINUTES: ${{ inputs.build_timeout_minutes }}
