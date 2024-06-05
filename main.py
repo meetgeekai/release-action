@@ -88,7 +88,7 @@ class JenkinsServer:
 
     def _get_build_number(self, queue_item_number: int):
         attempts = 0
-        while attempts < 30:
+        while attempts < 240:
             try:
                 queue_item = self.server.get_queue_item(queue_item_number)
                 build_number = int(queue_item["executable"]["number"])
@@ -96,7 +96,7 @@ class JenkinsServer:
                 return build_number
             except (KeyError, TypeError):
                 logger.info("Waiting for build to launch...")
-                time.sleep(3)
+                time.sleep(5)
 
             attempts += 1
 
