@@ -3,7 +3,6 @@ import re
 import sys
 import time
 import logging
-from typing import Dict
 from jenkins import Jenkins
 from urllib.parse import urlparse, urlunparse, ParseResult
 
@@ -95,7 +94,7 @@ class JenkinsServer:
                 build_number = int(queue_item["executable"]["number"])
                 logger.info(f"Build #{build_number} launched")
                 return build_number
-            except KeyError:
+            except (KeyError, TypeError):
                 logger.info("Waiting for build to launch...")
                 time.sleep(3)
 
@@ -145,6 +144,3 @@ class JenkinsServer:
 if __name__ == "__main__":
     jenkins = JenkinsServer()
     jenkins.run()
-
-
-# job = 'meetgeek/angular_frontend/main'
